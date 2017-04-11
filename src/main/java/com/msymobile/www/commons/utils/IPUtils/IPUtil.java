@@ -106,4 +106,12 @@ public class IPUtil {
 		}
 		return result.toString();
 	}
+	
+	public static int getIPValue(String ip){
+		int value = 1;
+		for(String c:ip.split(".")){
+			value +=Integer.parseInt(c)*255;
+		}
+		return value;
+	}
 }
