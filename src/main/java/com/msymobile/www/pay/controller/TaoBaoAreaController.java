@@ -55,6 +55,7 @@ public class TaoBaoAreaController {
 			if(values != null){
 				regionId = values.split(";")[0];
 				cityId = values.split(";")[1];
+				message = "查询成功！";
 			}else{
 				//查看数据库中是否有此ip
 				MasterIP ipModel = this.taoBaoAreaWriteService.selectByPrimaryKey(ip);
@@ -65,8 +66,6 @@ public class TaoBaoAreaController {
 					RedisUtil.getJedis().set(ip, regionId+";"+cityId);
 					message = "查询成功！";
 				}else{
-					//设置延迟 50 毫秒，淘宝qps=10，防止连接超时
-					Thread.currentThread().sleep(50);
 					String result = IPUtil.getAddressByIP(ip);
 					if(result!=null && !"".equals(result.trim())){
 						result = result.replaceAll("_id", "Id").replace("data", "masterTaoBaoArea");
