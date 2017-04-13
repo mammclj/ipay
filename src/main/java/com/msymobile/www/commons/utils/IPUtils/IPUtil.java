@@ -52,7 +52,7 @@ public class IPUtil {
 	/**
 	 * 调用淘宝ip地址库远程接口，获取指定ip的地域信息
 	 * 
-	 * @param strIP
+	 * @param ip
 	 *            IP地址
 	 * @return json字符串，如：
 	 * {
