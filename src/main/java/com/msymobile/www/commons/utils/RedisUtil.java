@@ -14,14 +14,22 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 @SuppressWarnings("unused")
 public class RedisUtil {
-	private static final String IP = "127.0.0.1"; // ip
-	private static final int PORT = 6379; // 端口
-	private static final String AUTH = ""; // 密码(原始默认是没有密码)
-	private static int MAX_ACTIVE = 1024; // 最大连接数
-	private static int MAX_IDLE = 200; // 设置最大空闲数
-	private static int MAX_WAIT = 10000; // 最大连接时间
-	private static int TIMEOUT = 10000; // 超时时间
-	private static boolean BORROW = true; // 在borrow一个事例时是否提前进行validate操作
+//	private static final String IP = "127.0.0.1"; // ip
+//	private static final int PORT = 6379; // 端口
+//	private static final String AUTH = ""; // 密码(原始默认是没有密码)
+//	private static int MAX_ACTIVE = 1024; // 最大连接数
+//	private static int MAX_IDLE = 200; // 设置最大空闲数
+//	private static int MAX_WAIT = 10000; // 最大连接时间
+//	private static int TIMEOUT = 10000; // 超时时间
+//	private static boolean BORROW = true; // 在borrow一个事例时是否提前进行validate操作
+	private static final String IP = PropertiesUtil.getValue("redis.ip"); // ip
+	private static final int PORT = Integer.parseInt(PropertiesUtil.getValue("redis.port")); // 端口
+	private static final String AUTH = PropertiesUtil.getValue("redis.auth"); // 密码(原始默认是没有密码)
+	private static int MAX_ACTIVE = Integer.parseInt(PropertiesUtil.getValue("redis.max_active")); // 最大连接数
+	private static int MAX_IDLE = Integer.parseInt(PropertiesUtil.getValue("redis.max_idle")); // 设置最大空闲数
+	private static int MAX_WAIT = Integer.parseInt(PropertiesUtil.getValue("redis.max_wait")); // 最大连接时间
+	private static int TIMEOUT = Integer.parseInt(PropertiesUtil.getValue("redis.timeout")); // 超时时间
+	private static boolean BORROW = Boolean.getBoolean(PropertiesUtil.getValue("redis.borrow")); // 在borrow一个事例时是否提前进行validate操作
 	private static JedisPool pool = null;
 	private static Logger logger = Logger.getLogger(RedisUtil.class);
 	/**
